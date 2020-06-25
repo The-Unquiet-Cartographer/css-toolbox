@@ -1,0 +1,21 @@
+//This @mixin takes a width ratio as input and applies it
+//  to the children of the selector that @includes it.
+
+@mixin column-width-ratio ($rat_1, $rat_2, $rat_3:0, $rat_4:0) {
+    $tot:$rat_1+$rat_2+$rat_3+$rat_4;
+    $seg:100/($tot);
+    $pct_1:$seg*$rat_1*1%;
+    $pct_2:$seg*$rat_2*1%;
+    & > :nth-child(1){width:$pct_1}
+    & > :nth-child(2){width:$pct_2}
+    @if $rat_3 > 0 {
+        $pct_3: $seg*$rat_3*1%;
+        & > :nth-child(3){width:$pct_3}
+    }
+    @if $rat_4 > 0 {
+        $pct_4: $seg*$rat_4*1%;
+        & > :nth-child(4){width:$pct_4}
+    }
+}
+
+

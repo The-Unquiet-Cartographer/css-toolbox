@@ -1,0 +1,9 @@
+@mixin floated-columns {
+    >*:not(:last-child) {
+        float:left;
+    }
+    >:last-child {
+        float:right;
+    }
+    display:inline-block;   //<== This is important for giving the containers a tangiable height property.
+}

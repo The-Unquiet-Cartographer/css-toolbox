@@ -1,0 +1,24 @@
+//Apply the specified colour to the included properties
+@mixin schema-colour ($colour) {
+    h3 {color:$colour;}
+    a {background-color:$colour;}
+}
+
+//Create classes including the above @mixin, from
+// the colours specified.
+@mixin create-schemas ($colours...) {
+    @each $col in $colours {
+        .schema-#{$col} {
+            @include schema-colour ($col);
+        }
+    }
+}
+
+
+//Unfortunately, this won't work - See the CSS.
+// This is due to the interpolation ( #{$col} ) not
+// liking custom colours; it'll try to title the class
+// with the Hex colour code.
+
+//Instead, you'll need to create an array of key-value
+// pairs (I think).

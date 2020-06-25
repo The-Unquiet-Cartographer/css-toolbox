@@ -1,0 +1,26 @@
+//Set the basis of a row of flex items with a fixed
+// gutter size in-between.
+
+//The .flex-container needs the property:
+// justify-content:space-between
+
+
+
+//Apply this to your flex-items, i.e. direct children
+// of the .flex-container. 
+@mixin flex-basis-static-gutters ($panels, $gutter) {
+    flex-basis: calc( (100% - (#{$gutter} * (#{$panels} - 1)) ) / #{$panels});
+}
+
+
+//OR:
+
+// Apply this directly to your .flex-container.
+@mixin flex-children-static-gutters ($panels, $gutter) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    >*{
+        flex-basis: calc( (100% - (#{$gutter} * (#{$panels} - 1)) ) / #{$panels});
+    }
+}

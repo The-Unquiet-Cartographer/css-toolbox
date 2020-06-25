@@ -1,0 +1,19 @@
+@mixin l ($x-pad:20px, $y-pad:20px) {
+    
+    a, button {
+        box-sizing: border-box;
+        padding: $y-pad $x-pad;
+        &:hover { background-color: darken($colour, 10); }
+    }
+
+    span {
+        width:28px;
+        height: 3px;
+        margin: auto;
+        background-color: #333645;
+        display: block;
+    }
+
+}
+
+

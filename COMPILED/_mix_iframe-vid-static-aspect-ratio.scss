@@ -1,0 +1,24 @@
+// This @mixin provides a responsive width and height for <iframe> video content, e.g. embedded YouTube. 
+// It requires that your <iframe> video is wrapped in a <div class=vid-wrapper>.
+// The default $ratio of 56.25% represents a 16:9 aspect ratio, and is gotten by calculating:
+// height/width * 100
+// (9/16)*100
+
+@mixin iframe-vid-static-aspect-ratio ($ratio: 56.25%) {
+
+    .vid-wrapper {
+        position: relative;
+        padding-bottom: (#{$ratio});
+        height: 0;
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+// Special thanks to Chris Coyler @ CSS-tricks for that one 
+// https://css-tricks.com/fluid-width-video/
