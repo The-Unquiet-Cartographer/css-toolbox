@@ -1,0 +1,50 @@
+//Takes a width ratio as input and applies them to
+//  the children of the @including selector.
+//The > combinator is necessary to make sure the
+//  & selector is only targeting DIRECT children.
+//This code processes [2-3] values.
+@mixin ColumnRatio ($rat_1, $rat_2, $rat_3:null) {
+    $tot:$rat_1+$rat_2;
+    @if $rat_3 {$tot:$tot+$rat_3}
+    $seg:100/($tot);
+    $pct_1:$seg*$rat_1*1%;
+    $pct_2:$seg*$rat_2*1%;
+    $pct_3:null;
+    @if $rat_3 {$pct_3:$seg*$rat_3*1%};
+    & > :nth-child(1){width:$pct_1}
+    & > :nth-child(2){width:$pct_2}
+    @if $pct_3 {& > :nth-child(3){width:$pct_3}}
+}
+//It's a shame I have to include all those other
+//  @if statements. If only there were a way to
+//  math with null values...
+@mixin ColumnRatio_V2 ($rat_1, $rat_2, $rat_3:0, $rat_4:0) {
+    $tot:$rat_1+$rat_2+$rat_3+$rat_4;
+    $seg:100/($tot);
+    $pct_1:$seg*$rat_1*1%;
+    $pct_2:$seg*$rat_2*1%;
+    & > :nth-child(1){width:$pct_1}
+    & > :nth-child(2){width:$pct_2}
+    @if $rat_3 > 0 {
+        $pct_3: $seg*$rat_3*1%;
+        & > :nth-child(3){width:$pct_3}
+    }
+    @if $rat_4 > 0 {
+        $pct_4: $seg*$rat_4*1%;
+        & > :nth-child(4){width:$pct_4}
+    }
+}
+//There. Now in theory I could just keep adding
+//  more params to the @mixin. My only question
+//  is what would happen if more params are passed
+//  than there are children to pass them to?
+//      Well you just end up with a bunch of
+//  Whitespace because there's no children to
+//  recieve the output.
+
+//Maybe I should add some sort of parameter that
+//  selects which children to apply it to.
+//And some code which floats the columns by itself,
+//  but makes the last column float:right.
+
+

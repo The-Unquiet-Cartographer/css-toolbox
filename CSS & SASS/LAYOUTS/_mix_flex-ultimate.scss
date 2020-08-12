@@ -1,0 +1,23 @@
+//Include this in your .flex-container
+@mixin flex-variable-basis-static-gutters ($ratios, $gutter-size_x: 20px, $gutter-size_y: 20px) {
+    $lgth: length($ratios);
+    $tot:0;
+    @each $R in $ratios {
+        $tot: $tot + $R;
+    }
+    $avg: calc(100% - (#{$gutter-size_x} * (#{$lgth} - 1) ) );
+    $sgmt: #{$avg} / $tot;
+    
+    @for $i from 1 through $lgth {
+        >*:nth-child( #{$lgth}n + #{$i} ) {
+            $n: nth($ratios, $i);
+            flex-basis: calc(#{$n} * #{$sgmt}) ;
+        }
+    }
+    :nth-child(1) ~ *{
+        margin-top: 0;
+    }
+    :nth-child(#{$lgth}) ~ *{
+        margin-top: $gutter-size_y;
+    }
+}

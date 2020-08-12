@@ -1,0 +1,8 @@
+//Include this in an element you want to center with absolute positioning.
+//Don't forget to set the position property of the parent to fixed, relative, or absolute!
+@mixin absolute-position-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

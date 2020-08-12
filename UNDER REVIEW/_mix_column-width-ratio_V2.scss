@@ -1,0 +1,51 @@
+//This @mixin takes a width ratio as input and applies it
+//  to the children of the selector that @includes it.
+
+@mixin column-width-ratio_V2 ($ratios, $first-child: 1, $gutter-size_x: 20px) {
+    $len: length($ratios);
+    $last-child: $first-child - 1 + $len;
+    $tot: 0;
+    @each $rat in $ratios {
+        $tot: $tot + $rat;
+    }
+    $avg: calc(100% - (#{$gutter-size_x} * (#{$len} - 1)) );
+    $seg: calc(#{$avg} / #{$tot});
+
+    @for $i from 1 through $len {
+        $child: $first-child - 1 + $i;
+        >*:nth-child(#{$child}) {
+            float: left;
+            padding: 0 calc(#{$gutter-size_x} / 2); 
+            box-sizing: border-box;
+            $ratio-n: nth($ratios, $i);
+            width: calc(#{$seg} * #{$ratio-n});
+        }
+    }
+    >*:nth-child(#{$first-child}) {
+        padding-left: 0;
+    }
+    >*:nth-child(#{$last-child}) {
+        float: right;
+        padding-right: 0;
+    }
+}
+
+//vvv DON'T USE ME!!! vvv
+@mixin why-is-this-invalid {
+    @for $i from $first-child through $last-child {
+        $n: calc($i - $first-child + 1);            //<== Because this is not a number, apparently.
+        >*:nth-child(#{$i}) {
+            float: left;
+            padding: 0 calc(#{$gutter-size_x} / 2); 
+            $ratio-n: nth($ratios, $n);
+            width: calc(#{$ratio-n} * #{$seg});
+        }
+        >*:nth-child(#{$first-child}) {
+            padding-left: 0;
+        }
+        >*:nth-child(#{$last-child}) {
+            float: right;
+            padding-right: 0;
+        }
+    }
+}

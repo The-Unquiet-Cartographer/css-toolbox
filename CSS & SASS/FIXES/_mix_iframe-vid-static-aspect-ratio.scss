@@ -2,7 +2,7 @@
 // It requires that your <iframe> video is wrapped in a <div class=vid-wrapper>.
 // The default $ratio of 56.25% represents a 16:9 aspect ratio, and is gotten by calculating:
 // height/width * 100
-// (9/16)*100
+// OR (9/16)*100
 
 @mixin iframe-vid-static-aspect-ratio ($ratio: 56.25%) {
 

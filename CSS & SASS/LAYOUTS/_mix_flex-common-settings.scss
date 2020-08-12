@@ -1,0 +1,17 @@
+//Include these in your .flex-container
+@mixin flex-common-wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    >* {
+        box-sizing: border-box;
+    }
+}
+@mixin flex-common-nowrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    >* {
+        box-sizing: border-box;
+    }
+}

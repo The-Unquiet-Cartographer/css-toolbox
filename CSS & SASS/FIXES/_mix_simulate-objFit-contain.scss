@@ -1,0 +1,47 @@
+//Include this in the container for your image
+
+@mixin simulate-objFit-contain ($break) {
+/* 
+    $break needs to be manually calculated with the following formula:
+        (image-x * (container-y / image-y)
+    because @media and calc() don't play well together.
+
+    If the container is smaller than the page width, you will need to
+    add the margin/padding values to $break.
+*/
+    overflow: hidden;
+    img {
+        width:100%;
+        height: auto;
+        @media (max-width: $break) {
+            height: 100%;
+            width: auto;
+        }
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+//These @mixins can be combined with media queries if your images do not dynamically scale.
+//Include them in your image container.
+
+//If the image is wider than the container:
+@mixin img-crop-height {
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+//If the image is narrower than the container:
+@mixin img-crop-width {
+    overflow: hidden;
+    img {
+        height: 100%;
+        width: auto;
+    }
+}
+//You may also want to center the images with absolute positioning; see the absolute-position-center @mixin;

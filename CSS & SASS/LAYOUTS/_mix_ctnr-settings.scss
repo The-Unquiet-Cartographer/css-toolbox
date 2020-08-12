@@ -1,4 +1,4 @@
-@import "breakpoints";
+@import "/CSS & SASS/VARIABLES/breakpoints";
 
 //Include this in a section that has a .flex-container
 // as its child.
@@ -12,11 +12,16 @@
 // but I removed that functionality to give the @mixin
 // more focus.
 
-@mixin static-width-wrapper ($pseudo-padding: 20px, $breakpoints: $bp-sm $bp-md $bp-lg, ) {
+@mixin ctnr-static-width-at-breakpoints ($pseudo-padding: 20px, $breakpoints: $bp-sm $bp-md $bp-lg, ) {
     margin: auto;
     @each $var in $breakpoints {
         @media (min-width: $var) {
             width:calc(#{$var} - (2 * #{$pseudo-padding}));
         }
     }
+}
+
+@mixin ctnr-full-size-static-margins ($pseudo-padding: 20px) {
+    width: calc(100% - (#{$pseudo-padding} * 2));
+    margin: auto;
 }

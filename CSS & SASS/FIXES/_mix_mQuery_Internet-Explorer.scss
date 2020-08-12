@@ -1,0 +1,14 @@
+//Use this media query to apply styles ONLY in Internet Explorer 11
+@mixin mQuery-IE11 {
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        @content;
+        /* credit to Philip Newcomer @ https://philipnewcomer.net/2014/04/target-internet-explorer-10-11-css/ */
+    }
+}
+
+//Use this media query to apply styles in browsers APART FROM Internet Explorer
+@mixin mQuery-NOT-IE {
+    @supports not (-ms-high-contrast: none) {
+        @content
+    }
+}

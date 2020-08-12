@@ -1,0 +1,269 @@
+/*////////////*/
+/* Parent obj */
+/*////////////*/
+
+@mixin greek-border-style ( $pseudo-padding-x: 0px,
+                            $pseudo-padding-t: 0px,
+                            $pseudo-padding-b: 0px,
+                            $cnr-size: 50px,
+                            $ratio-cnr-ext: 4,
+                            $ratio-cnr-int: 2,
+                            $ratio-line-weight: 1,
+                            $bdr-color: wheat, 
+                        ) {
+
+    position: relative;
+
+/*Include this @mixin in the SCSS for the element that contains your greek-border. 
+Don't forget to give your border a unique id and pass it as an argument.*/
+
+//Total width based on ratio inputs.
+    $total: calc(#{$ratio-cnr-ext} + #{$ratio-cnr-int});
+
+//Sizing for corner-most elements.
+    $cnr-ext-width: calc((100% / #{$total}) * #{$ratio-cnr-ext});
+    $cnr-ext-height: calc((100% / #{$total}) * #{$ratio-cnr-ext});
+
+//Sizing for (2nd-tier) corner-interior elements; sides are left and right, lids are top and bottom.
+    $cnr-int-side-width: calc((100% / #{$total}) * #{$ratio-cnr-ext});
+    $cnr-int-side-height: calc((100% / #{$total}) * #{$ratio-cnr-int});
+
+    $cnr-int-lid-width: calc((100% / #{$total}) * #{$ratio-cnr-int});
+    $cnr-int-lid-height: calc((100% / #{$total}) * #{$ratio-cnr-ext});
+
+    .greek-border {
+        position: absolute;
+        width: calc(100% - (2 * #{$pseudo-padding-x}));
+        margin-left: $pseudo-padding-x;
+        margin-right: $pseudo-padding-x;
+        height: calc(100% - (#{$pseudo-padding-t} + #{$pseudo-padding-b}));
+        margin-top: $pseudo-padding-t;
+        margin-bottom: $pseudo-padding-b;
+        * {
+            position: absolute;
+        }
+        .top, .bottom {
+            height: calc( (#{$cnr-size} / #{$total}) * #{$ratio-line-weight});
+            width: calc( 100% - (2 * #{$cnr-size}) );
+            left: $cnr-size;
+        }
+        .left, .right {
+            height: calc( 100% - (2 * #{$cnr-size}) );
+            width: calc( (#{$cnr-size} / #{$total}) * #{$ratio-line-weight});
+            top: $cnr-size;
+        }
+        .top {top: 0;}
+        .bottom {bottom: 0;}
+        .left {left: 0;}
+        .right {right: 0;}
+        //The parent div(s) for all the corner elements
+        .tl, .tr, .bl, .br {
+            width: $cnr-size;
+            height: $cnr-size;
+        }
+        .tl, .tr {top:0;}
+        .tl, .bl {left:0;}
+        .tr, .br {right: 0;}
+        .bl, .br {bottom: 0;}
+        //Sizing the corner-most elements
+        .cnr {
+            width: $cnr-ext-width;
+            height: $cnr-ext-height;
+        }
+        //Sizing and positioning the corner-interior elements
+        .t {top: 0;}
+        .l {left:0;}
+        .r {right:0;}
+        .b {bottom:0;}
+        .t, .b {
+            width: $cnr-int-lid-width;
+            height: $cnr-int-lid-height;
+        }
+        .l, .r {
+            width: $cnr-int-side-width;
+            height: $cnr-int-side-height;
+        }
+        //Final positioning of all 2nd-tier corner elements
+        .tl {
+            .cnr {top:0; left:0;}
+            .t {left: calc( (100% / #{$total}) * #{$ratio-cnr-ext} );}
+            .l {top: calc( (100% / #{$total}) * #{$ratio-cnr-ext} );}
+        }
+        .tr {
+            .cnr {top:0; right:0;}
+            .t {right: calc( (100% / #{$total}) * #{$ratio-cnr-ext} );}
+            .r {top: calc( (100% / #{$total}) * #{$ratio-cnr-ext} );}
+        }
+        .bl {
+            .cnr {bottom:0; left:0;}
+            .b {left: calc( (100% / #{$total}) * #{$ratio-cnr-ext} );}
+            .l {bottom: calc( (100% / #{$total}) * #{$ratio-cnr-ext} );}
+        }
+        .br {
+            .cnr {bottom:0; right:0;}
+            .b {right: calc( (100% / #{$total}) * #{$ratio-cnr-ext} );}
+            .r {bottom: calc( (100% / #{$total}) * #{$ratio-cnr-ext} );}
+        }
+        //Setting the height and width of (3rd-tier) line elements (corner-interior)
+        .h {width: 100%;}
+        .v {height: 100%;}
+        .l, .r {
+            .h {height: calc( (100% / #{$ratio-cnr-int}) * #{$ratio-line-weight} );}
+            .v {width: calc( (100% / #{$ratio-cnr-ext}) * #{$ratio-line-weight} );}
+        }
+        .t, .b {
+            .h {height:  calc( (100% / #{$ratio-cnr-ext}) * #{$ratio-line-weight} );}
+            .v {width:  calc( (100% / #{$ratio-cnr-int}) * #{$ratio-line-weight} );}
+        }
+        .tl {
+            .t, .l {
+                .h {bottom: 0;}
+                .v {right: 0;}
+            }
+        }
+        .tr {
+            .t, .r {
+                .h {bottom: 0;}
+                .v {left: 0;}
+            }
+        }
+        .bl {
+            .b, .l {
+                .h {top: 0;}
+                .v {right: 0;}
+            }
+        }
+        .br {
+            .b, .r {
+                .h {top: 0;}
+                .v {left: 0;}
+            }
+        }
+    }
+
+    //////////////////////////////
+    // COLOURS AND BORDER STYLE //
+    //////////////////////////////
+
+    $bdr-wdth: calc((#{$cnr-size} / #{$total}) * #{$ratio-line-weight});
+
+    .greek-border {
+        * {
+            box-sizing: border-box;
+        }
+        .cnr {
+            border: $bdr-wdth ridge $bdr-color;
+        }
+
+        .tl {
+            .t {
+                .h {
+                    border-right: $bdr-wdth ridge $bdr-color;
+                    border-bottom: $bdr-wdth ridge $bdr-color;
+                    z-index: 20;
+                }
+                .v {
+                    border-left: $bdr-wdth ridge $bdr-color;
+                    border-top: $bdr-wdth ridge $bdr-color;
+                }
+            }
+            .l {
+                .h {
+                    border-left: $bdr-wdth ridge $bdr-color;
+                    border-top: $bdr-wdth ridge $bdr-color;
+                }
+                .v {
+                    border-right: $bdr-wdth ridge $bdr-color;
+                    border-bottom: $bdr-wdth ridge $bdr-color;
+                }
+            }
+        }
+        .top { border-top: $bdr-wdth ridge $bdr-color; }
+        .left { border-left: $bdr-wdth ridge $bdr-color; }
+        .bl {
+            .l {
+                .h {
+                    border-left: $bdr-wdth ridge $bdr-color;
+                    border-bottom: $bdr-wdth ridge $bdr-color;
+                }
+                .v {
+                    border-right: $bdr-wdth ridge $bdr-color;
+                    border-top: $bdr-wdth ridge $bdr-color;
+                }
+            }
+            .b {
+                .h {
+                    border-right: $bdr-wdth ridge $bdr-color;
+                    border-top: $bdr-wdth ridge $bdr-color;
+                    z-index: 20;
+                }
+                .v {
+                    border-left: $bdr-wdth ridge $bdr-color;
+                    border-bottom: $bdr-wdth ridge $bdr-color;
+                }
+            }
+        }
+        .bottom { border-bottom: $bdr-wdth ridge $bdr-color; }
+        .tr {
+            .t {
+                .h {
+                    border-left: $bdr-wdth ridge $bdr-color;
+                    border-bottom: $bdr-wdth ridge $bdr-color;
+                    z-index: 20;
+                }
+                .v {
+                    border-right: $bdr-wdth ridge $bdr-color;
+                    border-top: $bdr-wdth ridge $bdr-color;
+                }
+            }
+            .r {
+                .h {
+                    border-right: $bdr-wdth ridge $bdr-color;
+                    border-top: $bdr-wdth ridge $bdr-color;
+                }
+                .v {
+                    border-left: $bdr-wdth ridge $bdr-color;
+                    border-bottom: $bdr-wdth ridge $bdr-color; 
+                }
+            }
+        }
+        .right { border-right: $bdr-wdth ridge $bdr-color; }
+        .br {
+            .r {
+                .h {
+                    border-right: $bdr-wdth ridge $bdr-color;
+                    border-bottom: $bdr-wdth ridge $bdr-color;
+                }
+                .v {
+                    border-left: $bdr-wdth ridge $bdr-color;
+                    border-top: $bdr-wdth ridge $bdr-color;
+                }
+            }
+            .b {
+                .h {
+                    border-left: $bdr-wdth ridge $bdr-color;
+                    border-top: $bdr-wdth ridge $bdr-color;
+                    z-index: 20;
+                }
+                .v {
+                    border-right: $bdr-wdth ridge $bdr-color;
+                    border-bottom: $bdr-wdth ridge $bdr-color;
+                }
+            }
+        }
+    }
+
+//close @mixin
+}
+
+@mixin mix_bdr-mod_extend-to-bottom ($cnr-size: 50px) {
+    .greek-border {
+        margin-bottom: 0;
+        .left, .right {
+            height: calc( 100% - (#{$cnr-size}) );
+        }
+        .bottom, .bl, .br {
+            display: none;
+        }
+    }
+}
