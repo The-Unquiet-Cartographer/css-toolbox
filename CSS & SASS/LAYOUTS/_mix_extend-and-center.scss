@@ -1,0 +1,19 @@
+//  This @mixin had a really specific use case when I was trying to center an absolutely positioned object and extend it offscreen.
+//  For reasons the element required a container to act as a buffer zone for the :hover state.
+//  Hopefully I will remember it if I ever come across the same situation again.
+
+//  @include this in the element that is the container / buffer zone for the element you are displaying.
+@mixin extend-and-center($width-extension-multiplier: 10) {
+    position: absolute;
+    $extended-width: calc(100% * #{$width-extension-multiplier});
+    width: $extended-width;
+    $pseudo-padding: calc((#{$extended-width} - 100%) / 2);
+    left: calc(#{$pseudo-padding} * -1);
+    >* {
+        position: absolute;
+        $padding-calc: calc( (100% - (100% / #{$width-extension-multiplier})) / 2);
+        padding-left: $padding-calc;
+        padding-right: $padding-calc;
+        width: 100%;
+    }
+}
