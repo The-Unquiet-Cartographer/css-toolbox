@@ -1,0 +1,66 @@
+/*The styles in this file control the menu transition.*/
+/*To modify visual themes, see the file "sidebar-themes".*/ 
+
+body {
+    position: relative;
+}
+
+
+////////////////////
+/* Sidebar styles */
+////////////////////
+
+#side-menu {
+    display: block;
+    position: fixed;
+    width: $width;
+    height: 100%;
+    right: 0;
+    z-index: $zInd + 1;
+    overflow-y: scroll;
+}
+.menu-closed {
+    transform: translateX(100%);
+    transition: transform $transDur ease-in-out;
+}
+.menu-open {
+    display: block;
+    transform: translateX(0);
+}
+
+
+/////////////////////////
+/* Page blocker styles */
+/////////////////////////
+
+#page-blocker {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(48,48,48);
+}
+.blocker-hidden {
+    //display: none;        //<== Display: none prevents Opacity property from transitioning because
+    z-index: -$zInd;      //<== Use visibility and z-index instead
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity $transDur ease-in-out;
+}
+.blocker-shown {
+    //display: block;
+    z-index: $zInd;
+    visibility: visible;
+    opacity: 50%;
+}
+
+
+////////////////////////
+/* Page offset styles */
+////////////////////////
+
+.page-default {
+    transition: transform $transDur ease-in-out;
+}
+.page-offset {
+    transform: translateX(-$width);
+}

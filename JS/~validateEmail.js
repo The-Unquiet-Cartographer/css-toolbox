@@ -1,9 +1,8 @@
-function ValidateEmail(mail) 
-{
- if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
-  {
-    return (true)
+function ValidateEmail(email) {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      alert("FUCK YEAH, MOTHERFUCKER")
+  } else {
+      alert("You have entered an invalid email address!");
   }
-    alert("You have entered an invalid email address!")
-    return (false)
 }
+//https://www.w3resource.com/javascript/form/email-validation.php

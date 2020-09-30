@@ -1,0 +1,29 @@
+@import "../CUSTOM-SIDEBAR/~variables/sb_variables";
+
+.btn-state-default {
+    img {
+        transition: transform $transDur;
+        transform-origin: top left;
+        backface-visibility: hidden;
+    }
+    img:first-of-type {
+        transform:rotate3d(1,0,0,0deg) translate(-50%, -50%);
+    }
+    img:last-of-type {
+        transform:rotate3d(1,0,-1,180deg) translate(-50%, -50%);
+    }
+}
+
+.btn-state-trans {
+    img {
+        transition: transform $transDur;
+        transform-origin: top left;
+        backface-visibility: hidden;
+    }
+    img:first-of-type {
+        transform:rotate3d(1,0,0,180deg) translate(-50%, -50%);
+    }
+    img:last-of-type {
+        transform:rotate3d(1,0,-1,0deg) translate(-50%, -50%);
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar example</title>
+
+    <link rel="stylesheet" href="../CUSTOM-SIDEBAR/include/custom-sidebar.css">
+    <link rel="stylesheet" href="../CUSTOM-SIDEBAR-BTN/btn-trans.css">
+
+    <style>
+        header {padding-left: 300px} 
+        #btn-menu {
+            position: relative; display: block; cursor:pointer;
+            width: 60px; height: 60px; background-color: rgb(48,48,64); border-radius: 4px;
+            text-align: center; text-transform: uppercase; color: white;
+        }
+        #btn-menu img {
+            position: absolute; display: inline-block; top: 20px; left: 50%;
+            height: 24px; max-height: 25px; width: 60px;
+        }
+        #btn-menu p {
+            position: absolute; top: 30px;
+            height: initial; width: 100%;
+            line-height: initial; font-size: 12px;
+        }
+        #side-menu { background-color: rgb(48,48,64); color: white; padding: 20px; font-size: 16px }
+    </style>
+
+</head>
+
+<body>    
+    <div id="page-blocker" class="blocker-hidden"></div>
+
+    <nav id="side-menu" class="menu-closed">
+        <div>
+            Any sort of content you want, right here.
+        </div>
+    </nav>
+
+    <!--#page-wrapper | Wrapper for page content (header/main/footer/etc...) -->
+    <div id="page-wrapper">
+
+        <header> HEADER 
+            <a class="btn-state-default" id="btn-menu">
+                <img src="../IMGs/burger-white.svg" alt="Menu icon">
+                <img src="../IMGs/close.svg" alt="Cross icon">
+                <p>MENU</p>
+            </a>
+        </header>
+
+        <main> MAIN </main>
+
+        <footer> FOOTER </footer>
+
+    <!--end of #page-wrapper-->
+    </div>
+
+<!--Scripts-->
+    <script src="../CUSTOM-SIDEBAR/include/custom-sidebar.js"></script>
+    <script src="../CUSTOM-SIDEBAR-BTN/btn-trans.js"></script>
+    
+</body>
+</html>

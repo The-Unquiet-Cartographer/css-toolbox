@@ -1,0 +1,42 @@
+.btn-state-default img {
+  -webkit-transition: -webkit-transform 0.45s;
+  transition: -webkit-transform 0.45s;
+  transition: transform 0.45s;
+  transition: transform 0.45s, -webkit-transform 0.45s;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.btn-state-default img:first-of-type {
+  -webkit-transform: rotate3d(1, 0, 0, 0deg) translate(-50%, -50%);
+          transform: rotate3d(1, 0, 0, 0deg) translate(-50%, -50%);
+}
+
+.btn-state-default img:last-of-type {
+  -webkit-transform: rotate3d(1, 0, -1, 180deg) translate(-50%, -50%);
+          transform: rotate3d(1, 0, -1, 180deg) translate(-50%, -50%);
+}
+
+.btn-state-trans img {
+  -webkit-transition: -webkit-transform 0.45s;
+  transition: -webkit-transform 0.45s;
+  transition: transform 0.45s;
+  transition: transform 0.45s, -webkit-transform 0.45s;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.btn-state-trans img:first-of-type {
+  -webkit-transform: rotate3d(1, 0, 0, 180deg) translate(-50%, -50%);
+          transform: rotate3d(1, 0, 0, 180deg) translate(-50%, -50%);
+}
+
+.btn-state-trans img:last-of-type {
+  -webkit-transform: rotate3d(1, 0, -1, 0deg) translate(-50%, -50%);
+          transform: rotate3d(1, 0, -1, 0deg) translate(-50%, -50%);
+}
+/*# sourceMappingURL=btn-trans.css.map */

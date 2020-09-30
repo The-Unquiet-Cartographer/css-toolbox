@@ -1,9 +1,9 @@
 const Maff = {
 
     Die_roll: function (min, max) {
-        max = Math.floor(max) + 1;                                  //<== Add 1 to max because Math.floor(random * range) will always return < max.
-        min = Math.floor(min);                                      //  If Math.floor(random * range) === 0 function returns min;
-        return (Math.floor(Math.random() * (max - min)) + min); 
+        max = Math.floor(max) + 1;                                  //<== Add 1 to max because (Math.random()*max) will always return < max.
+        min = Math.floor(min);                                          //This is because the upper bound of Math.random is =EX=clusive.
+        return (Math.floor(Math.random() * (max - min)) + min);     //<== If Math.floor(Math.random()*range) === 0 function returns min. 
     },
 
     //Get a die roll that is biased towards the middle of the range like a 2D roll would be.

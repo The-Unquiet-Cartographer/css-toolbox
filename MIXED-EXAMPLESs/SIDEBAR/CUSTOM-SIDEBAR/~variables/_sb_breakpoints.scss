@@ -1,0 +1,14 @@
+@import "../../CSS/_PARTIALS/breakpoints";
+
+@media(min-width: $bp-md) {
+
+    $width: 334px;
+
+    #side-menu {
+        width: $width;
+    }
+    .page-offset {
+        transform: translateX(-$width);
+    }
+
+}
