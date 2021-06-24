@@ -14,10 +14,10 @@
             flex-basis: calc(#{$n} * #{$sgmt}) ;
         }
     }
-    :nth-child(1) ~ *{
+    >:nth-child(1) ~ *{
         margin-top: 0;
     }
-    :nth-child(#{$lgth}) ~ *{
+    >:nth-child(#{$lgth}) ~ *{
         margin-top: $gutter-size_y;
     }
 }
